@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  institution_address: one
+  service: one
+  queue_size: 1
+  special_mark: MyString
+
+two:
+  institution_address: two
+  service: two
+  queue_size: 1
+  special_mark: MyString

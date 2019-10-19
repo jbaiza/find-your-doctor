@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  specialist: one
+  speciality: 
+  institution_address_service: one
+
+two:
+  specialist: two
+  speciality: 
+  institution_address_service: two

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  institution: one
+  sub_region: one
+  address: MyString
+  contact_info: MyString
+
+two:
+  institution: two
+  sub_region: two
+  address: MyString
+  contact_info: MyString
