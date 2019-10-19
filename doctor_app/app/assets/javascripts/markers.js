@@ -142,7 +142,7 @@ if (typeof H !== 'undefined') {
             startIsolineRouting();
         } else if (hoveredObject.icon) {
             let row = hoveredObject.getData();
-            if (row) {
+            if (row && row[7]) {
                 let id = row[4];
                 show_specialists(id, row[7]);
             }
@@ -168,11 +168,15 @@ if (typeof H !== 'undefined') {
                     e.currentPointer.viewportX,
                     e.currentPointer.viewportY);
                 infoBubble.setPosition(pos);
+                queueLenghtText = ""
+                if (queueSize) {
+                    queueLenghtText = `Rindas garums: ${queueSize} <br />`
+                }
                 infoBubble.setContent(`
             <div class="info-bubble-title">${facility}</div>
             <div class="info-bubble-label">
                 ${address} <br />
-                Rindas garums: ${queueSize} <br />
+                ${queueLenghtText}
                 ${email}
             </div>`);
                 infoBubble.open();
@@ -306,4 +310,5 @@ if (typeof H !== 'undefined') {
     }
 
     $('#myRange').on('change', redrwaIsolines);
+    addLayer("institutions/search.csv")
 }
