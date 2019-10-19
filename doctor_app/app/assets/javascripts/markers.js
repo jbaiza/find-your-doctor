@@ -158,7 +158,7 @@ var hoveringInfo = false;
                             address: row[1],
                             email: row[2],
                             mailto: row[6],
-                            queueSize: row[5],
+                            queueSize: `${row[5]} dienas`,
                             queueHeat: isNaN(row[5]) ? '#888888' : heat(Number(row[5]))
                         }
                     };
