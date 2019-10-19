@@ -49,6 +49,8 @@ var hoveringInfo = false;
         }
     );
 
+    global_map = map;
+
     // make the map interactive
     const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
     let ui = H.ui.UI.createDefault(map, layers);
@@ -57,20 +59,6 @@ var hoveringInfo = false;
     // Get an instance of the routing service
     var router = platform.getRoutingService();
 
-    // Set a new starting position (departure) when the user clicks the map
-    map.addEventListener('tap', function (evt) {
-        if (!hoveringInfo) {
-            var coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
-            startPosition = coord.lat + ',' + coord.lng;
-            startIsolineRouting();
-        } else if (hoveredObject.icon) {
-            let row = hoveredObject.getData();
-            if (row) {
-                let mailto = row[4];
-                alert(mailto);
-            }
-        }
-    });
     function startIsolineRouting() {
         // Set up the Routing API parameters
         var routingParams = {
@@ -111,6 +99,11 @@ var hoveringInfo = false;
 
         // Center and zoom the map so that the whole isoline polygon is in the viewport:
         map.setViewBounds(isolinePolygon.getBounds());
+
+        isolineCenter.addEventListener('tap', function (evt) {
+            evt.stopPropagation();
+            map.removeObjects([isolineCenter, isolinePolygon]);
+        });
     };
 
 
@@ -119,6 +112,62 @@ var hoveringInfo = false;
         map.getViewPort().resize();
     });
 
+
+    // show info bubble on hover
+    const format = d3.format('.2f');
+    let infoBubble = new H.ui.InfoBubble({ lat: 0, lng: 0 }, {});
+    infoBubble.addClass('info-bubble');
+    infoBubble.close();
+    ui.addBubble(infoBubble);
+    let hoveredObject;
+
+    // Set a new starting position (departure) when the user clicks the map
+    map.addEventListener('tap', function (evt) {
+        evt.stopPropagation();
+        if (!hoveringInfo) {
+            var coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
+            startPosition = coord.lat + ',' + coord.lng;
+            startIsolineRouting();
+        } else if (hoveredObject.icon) {
+            let row = hoveredObject.getData();
+            if (row) {
+                let mailto = row[4];
+                alert(mailto);
+            }
+        }
+    });
+
+    map.addEventListener('pointermove', (e) => {
+        if (hoveredObject && hoveredObject !== e.target) {
+            infoBubble.close();
+            hoveringInfo = false;
+        }
+
+        hoveredObject = e.target;
+        if (hoveredObject.icon) {
+            let row = hoveredObject.getData();
+            if (row) {
+                let facility = row[1];
+                let address = row[2];
+                let email = row[3];
+                let queueSize = row[5];
+
+                let pos = map.screenToGeo(
+                    e.currentPointer.viewportX,
+                    e.currentPointer.viewportY);
+                infoBubble.setPosition(pos);
+                infoBubble.setContent(`
+            <div class="info-bubble-title">${facility}</div>
+            <div class="info-bubble-label">
+                ${address} <br />
+                Rindas garums: ${queueSize} <br />
+                ${email}
+            </div>`);
+                infoBubble.open();
+                hoveringInfo = true;
+            }
+        }
+    });
     function addLayer(dataEndpoint) {
 
         // data from the Open Berlin Data
@@ -208,52 +257,8 @@ var hoveringInfo = false;
 
         // add layer to map
         map.addLayer(layer);
+
         map_layer = layer;
-        global_map = map;
 
-        $('#ClearButton').on('click', function () { map.removeLayer(layer); });
-
-        // show info bubble on hover
-        const format = d3.format('.2f');
-        let hoveredObject;
-        let infoBubble = new H.ui.InfoBubble({ lat: 0, lng: 0 }, {});
-        infoBubble.addClass('info-bubble');
-        infoBubble.close();
-        ui.addBubble(infoBubble);
-
-        map.addEventListener('pointermove', (e) => {
-            if (hoveredObject && hoveredObject !== e.target) {
-                infoBubble.close();
-                hoveringInfo = false;
-            }
-
-            hoveredObject = e.target;
-            if (hoveredObject.icon) {
-                let row = hoveredObject.getData();
-                if (row) {
-                    let facility = row[1];
-                    let address = row[2];
-                    let email = row[3];
-                    let queueSize = row[5];
-
-                    let pos = map.screenToGeo(
-                        e.currentPointer.viewportX,
-                        e.currentPointer.viewportY);
-                    infoBubble.setPosition(pos);
-                    infoBubble.setContent(`
-                <div class="info-bubble-title">${facility}</div>
-                <div class="info-bubble-label">
-                    ${address} <br />
-                    Rindas garums: ${queueSize} <br />
-                    ${email}
-                </div>`);
-                    infoBubble.open();
-                    hoveringInfo = true;
-                }
-            }
-        });
     }
-
-    $('#AddButton').on('click', addLayer);
-    addLayer();
 }
