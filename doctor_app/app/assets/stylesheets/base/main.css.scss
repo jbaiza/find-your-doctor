@@ -1969,16 +1969,16 @@ h6 {
 }
 
 blockquote {
-  border-left-color: $main;
+  border-left-color: $border_color;
 }
 
 code {
   background: none;
-  border-color: $main;
+  border-color: $border_color;
 }
 
 hr {
-  border-bottom-color: $main;
+  border-bottom-color: $border_color;
 }
 
 /* Box */
@@ -2003,7 +2003,7 @@ hr {
 }
 
 .box {
-  border-color: $main;
+  border-color: $border_color;
 }
 
 /* Button */
@@ -2414,7 +2414,7 @@ input[type="email"],
 select,
 textarea {
   background: none;
-  border-color: #abccd6;
+  border-color: $border_color;
 }
 
 input[type="text"]:focus,
@@ -2422,7 +2422,7 @@ input[type="password"]:focus,
 input[type="email"]:focus,
 select:focus,
 textarea:focus {
-  border-color: $main;
+  border-color: $border_color;
   box-shadow: 0 0 0 1px $main;
 }
 
@@ -2438,19 +2438,19 @@ input[type="radio"] + label {
 input[type="checkbox"] + label:before,
 input[type="radio"] + label:before {
   background: none;
-  border-color: $main;
+  border-color: $border_color;
 }
 
 input[type="checkbox"]:checked + label:before,
 input[type="radio"]:checked + label:before {
   background-color: $main;
-  border-color: $main;
+  border-color: $border_color;
   color: #ffffff;
 }
 
 input[type="checkbox"]:focus + label:before,
 input[type="radio"]:focus + label:before {
-  border-color: $main;
+  border-color: $border_color;
   box-shadow: 0 0 0 1px $main;
 }
 
@@ -2689,7 +2689,7 @@ dl dd {
 }
 
 ul.alt li {
-  border-top-color: $main;
+  border-top-color: $border_color;
 }
 
 /* Section/Article */
@@ -2802,7 +2802,7 @@ table.alt tfoot {
 }
 
 table tbody tr {
-  border-color: $main;
+  border-color: $border_color;
 }
 
 table tbody tr:nth-child(2n + 1) {
@@ -2814,15 +2814,15 @@ table th {
 }
 
 table thead {
-  border-bottom-color: $main;
+  border-bottom-color: $border_color;
 }
 
 table tfoot {
-  border-top-color: $main;
+  border-top-color: $border_color;
 }
 
 table.alt tbody tr td {
-  border-color: $main;
+  border-color: $border_color;
 }
 
 /* Wrapper */
@@ -3197,13 +3197,13 @@ table.alt tbody tr td {
 .wrapper.style2 input[type="checkbox"]:checked + label:before,
 .wrapper.style2 input[type="radio"]:checked + label:before {
   background-color: $main;
-  border-color: $main;
+  border-color: $border_color;
   color: #ffffff;
 }
 
 .wrapper.style2 input[type="checkbox"]:focus + label:before,
 .wrapper.style2 input[type="radio"]:focus + label:before {
-  border-color: $main;
+  border-color: $border_color;
   box-shadow: 0 0 0 1px $main;
 }
 
@@ -3308,7 +3308,7 @@ body {
 }
 
 #header .logo {
-  font-family: "Pacifico", cursive;
+  font-family: "Bebas Neue", cursive;
   display: inline-block;
   height: inherit;
   left: 0;
