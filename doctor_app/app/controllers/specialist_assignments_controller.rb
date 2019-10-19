@@ -10,7 +10,7 @@ class SpecialistAssignmentsController < ApplicationController
     else
       @institution_address_services = InstitutionAddressService.where(institution_address_id: params[:institution_address_id])
       if (search_term = params[:search_term]).present?
-        specialists = Specialist.where("LOWER(name) LIKE ?", "%#{search_term.downcase}%")
+        specialists = Specialist.where("LOWER(name) LIKE ? OR LOWER(comment) LIKE ?", "%#{search_term.downcase}%", "%#{search_term.downcase}%")
         specialities = Speciality.where("LOWER(name) LIKE ?", "%#{search_term.downcase}%")
         services = Service.where("LOWER(name) LIKE ?", "%#{search_term.downcase}%")
         institution_address_service_ids = []

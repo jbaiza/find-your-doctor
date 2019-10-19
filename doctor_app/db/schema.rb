@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_18_184741) do
+ActiveRecord::Schema.define(version: 2019_10_19_114740) do
+
+  create_table "branch", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+  end
 
   create_table "institution_address_services", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "institution_address_id"
@@ -42,6 +46,7 @@ ActiveRecord::Schema.define(version: 2019_10_18_184741) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name_normalized"
   end
 
   create_table "regions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -89,6 +94,7 @@ ActiveRecord::Schema.define(version: 2019_10_18_184741) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "comment"
   end
 
   create_table "specialities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

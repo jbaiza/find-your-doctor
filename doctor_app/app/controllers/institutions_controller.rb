@@ -7,7 +7,7 @@ class InstitutionsController < ApplicationController
     if service_id = params[:service_id]
       @institution_address_services = InstitutionAddressService.where(service_id: service_id).includes(institution_address: [:institution])
     elsif @search_term = params[:search_term]
-      specialists = Specialist.where("LOWER(name) LIKE ?", "%#{@search_term.downcase}%")
+      specialists = Specialist.where("LOWER(name) LIKE ? OR LOWER(comment) LIKE ?", "%#{@search_term.downcase}%", "%#{@search_term.downcase}%")
       specialities = Speciality.where("LOWER(name) LIKE ?", "%#{@search_term.downcase}%")
       services = Service.where("LOWER(name) LIKE ?", "%#{@search_term.downcase}%")
       # institutions = Institution.where("LOWER(name) LIKE ?", "%#{@search_term.downcase}%")
