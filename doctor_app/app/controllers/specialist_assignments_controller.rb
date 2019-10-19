@@ -4,10 +4,11 @@ class SpecialistAssignmentsController < ApplicationController
     if @specialist_assignments.present?
       @institution = @specialist_assignments.first.institution
       @institution_address = @specialist_assignments.first.institution_address
+      @institution_address_service = @specialist_assignments.first.institution_address_service
     else
-      institution_address_service = InstitutionAddressService.find(params[:institution_address_service_id])
-      @institution = institution_address_service.institution
-      @institution_address = institution_address_service.institution_address
+      @institution_address_service = InstitutionAddressService.find(params[:institution_address_service_id])
+      @institution = @institution_address_service.institution
+      @institution_address = @institution_address_service.institution_address
     end
     render layout: false
   end

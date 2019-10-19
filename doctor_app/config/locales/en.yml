@@ -6,3 +6,5 @@ en:
   renovation: renovation
   temporary_not_available: Temporary not available
   not_available: Not available
+
+  queue_size: Avg queue size
