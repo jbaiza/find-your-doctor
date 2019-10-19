@@ -13,8 +13,6 @@ if (typeof H !== 'undefined') {
         BottomRight: 1.002
     };
 
-    // var dataEndpoint = 'institutions/search.csv?service_id=19'; //'https://demistifier.ngrok.io/institutions.csv';
-    ///////////////////////////////////////////////////////////////////////////
     var hoveringInfo = false;
 
     'use strict';
@@ -54,7 +52,6 @@ if (typeof H !== 'undefined') {
         }
     );
 
-    globalMap = map;
 
     // make the map interactive
     const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
@@ -71,7 +68,7 @@ if (typeof H !== 'undefined') {
             'start': startPosition,
             'departure': departureTime, // can also use 'arrival' or both
             'rangetype': 'time', // distance (meters), time (seconds)
-            'range': timeRange
+            'range': $('#myRange').val() * MINUTES
         };
 
         // Call the Routing API to calculate an isoline
@@ -218,6 +215,9 @@ if (typeof H !== 'undefined') {
                     };
                     features.push(feature);
                 }
+
+                globalThis.globalFeatures = features;
+                console.log(globalThis.globalFeatures);
                 return features;
             },
             featuresToRows: (features) => {
@@ -236,6 +236,7 @@ if (typeof H !== 'undefined') {
                     feature.properties.queueHeat
                     ]);
                 }
+
                 return rows;
             }
         });
@@ -289,5 +290,5 @@ if (typeof H !== 'undefined') {
     }
 
     $('#CenterButton').on('click', function () { centerToCity($("#CityText").val()); });
-
+    addLayer('insitutions.csv');
 }
