@@ -1,18 +1,22 @@
 //https://developer.here.com/api-explorer/geovisualization/technology_markers/markers-csv-provider
 /** Config **/
 if (typeof H !== 'undefined') {
-var startPosition = new H.geo.Point(56.962526, 24.097702);
-var departureTime = '2019-10-28T08:00:00';
+    var startPosition = new H.geo.Point(56.9002, 24.6057);
+    var departureTime = '2019-10-28T08:00:00';
 
-var SECONDS = 1;
-var MINUTES = 60 * SECONDS;
-var timeRange = 30 * MINUTES;
+    var SECONDS = 1;
+    var MINUTES = 60 * SECONDS;
+    var timeRange = 30 * MINUTES;
 
-var dataEndpoint = 'insitutions.csv'; //'https://demistifier.ngrok.io/institutions.csv';
-///////////////////////////////////////////////////////////////////////////
-var hoveringInfo = false;
+    var inflateRect = {
+        TopLeft: 0.998,
+        BottomRight: 1.002
+    };
 
-(function () {
+    // var dataEndpoint = 'institutions/search.csv?service_id=19'; //'https://demistifier.ngrok.io/institutions.csv';
+    ///////////////////////////////////////////////////////////////////////////
+    var hoveringInfo = false;
+
     'use strict';
 
     var app_id = 'Wdwou7J9CcHwv9JKHUWp';      // <- replace with your own from
@@ -46,9 +50,11 @@ var hoveringInfo = false;
         {
             pixelRatio,
             center: startPosition,
-            zoom: 13
+            zoom: 7
         }
     );
+
+    globalMap = map;
 
     // make the map interactive
     const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
@@ -63,7 +69,7 @@ var hoveringInfo = false;
         var routingParams = {
             'mode': 'fastest;car;traffic:enabled', // car, truck (only with type fastest), pedestrian
             'start': startPosition,
-            'departure': departureTime,	// can also use 'arrival' or both
+            'departure': departureTime, // can also use 'arrival' or both
             'rangetype': 'time', // distance (meters), time (seconds)
             'range': timeRange
         };
@@ -111,23 +117,63 @@ var hoveringInfo = false;
         map.getViewPort().resize();
     });
 
-    function addLayer() {
 
-        // Set a new starting position (departure) when the user clicks the map
-        map.addEventListener('tap', function (evt) {
-            evt.stopPropagation();
-            if (!hoveringInfo) {
-                var coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
-                startPosition = coord.lat + ',' + coord.lng;
-                startIsolineRouting();
-            } else if (hoveredObject.icon) {
-                let row = hoveredObject.getData();
-                if (row) {
-                    let mailto = row[4];
-                    alert(mailto);
-                }
+    // show info bubble on hover
+    const format = d3.format('.2f');
+    let infoBubble = new H.ui.InfoBubble({ lat: 0, lng: 0 }, {});
+    infoBubble.addClass('info-bubble');
+    infoBubble.close();
+    ui.addBubble(infoBubble);
+    let hoveredObject;
+
+    // Set a new starting position (departure) when the user clicks the map
+    map.addEventListener('tap', function (evt) {
+        evt.stopPropagation();
+        if (!hoveringInfo) {
+            var coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
+            startPosition = coord.lat + ',' + coord.lng;
+            startIsolineRouting();
+        } else if (hoveredObject.icon) {
+            let row = hoveredObject.getData();
+            if (row) {
+                let id = row[4];
+                show_specialists(id);
             }
-        });
+        }
+    });
+
+    map.addEventListener('pointermove', (e) => {
+        if (hoveredObject && hoveredObject !== e.target) {
+            infoBubble.close();
+            hoveringInfo = false;
+        }
+
+        hoveredObject = e.target;
+        if (hoveredObject.icon) {
+            let row = hoveredObject.getData();
+            if (row) {
+                let facility = row[1];
+                let address = row[2];
+                let email = row[3];
+                let queueSize = row[5];
+
+                let pos = map.screenToGeo(
+                    e.currentPointer.viewportX,
+                    e.currentPointer.viewportY);
+                infoBubble.setPosition(pos);
+                infoBubble.setContent(`
+            <div class="info-bubble-title">${facility}</div>
+            <div class="info-bubble-label">
+                ${address} <br />
+                Rindas garums: ${queueSize} <br />
+                ${email}
+            </div>`);
+                infoBubble.open();
+                hoveringInfo = true;
+            }
+        }
+    });
+    function addLayer(dataEndpoint) {
 
         // data from the Open Berlin Data
         // https://www.berlin.de/sen/kultur/kulturpolitik/statistik-open-data/orte-geodaten/
@@ -148,7 +194,7 @@ var hoveringInfo = false;
                 function heat(q) {
                     var clamp = 500;
                     var r = 255;//Math.floor(map_range(Math.min(q, clamp), 1, clamp, 1, 255));
-                    var g = Math.floor(map_range(Math.min(q, clamp), 1, clamp, 255, 1));
+                    var g = Math.floor(map_range(Math.min(q, clamp), 1, clamp, 220, 1));
                     var b = 55;
                     return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
                 }
@@ -217,50 +263,31 @@ var hoveringInfo = false;
         // add layer to map
         map.addLayer(layer);
 
-        $('#ClearButton').on('click', function () { map.removeLayer(layer); });
-
-        // show info bubble on hover
-        const format = d3.format('.2f');
-        let hoveredObject;
-        let infoBubble = new H.ui.InfoBubble({ lat: 0, lng: 0 }, {});
-        infoBubble.addClass('info-bubble');
-        infoBubble.close();
-        ui.addBubble(infoBubble);
-
-        map.addEventListener('pointermove', (e) => {
-            if (hoveredObject && hoveredObject !== e.target) {
-                infoBubble.close();
-                hoveringInfo = false;
-            }
-
-            hoveredObject = e.target;
-            if (hoveredObject.icon) {
-                let row = hoveredObject.getData();
-                if (row) {
-                    let facility = row[1];
-                    let address = row[2];
-                    let email = row[3];
-                    let queueSize = row[5];
-
-                    let pos = map.screenToGeo(
-                        e.currentPointer.viewportX,
-                        e.currentPointer.viewportY);
-                    infoBubble.setPosition(pos);
-                    infoBubble.setContent(`
-                <div class="info-bubble-title">${facility}</div>
-                <div class="info-bubble-label">
-                    ${address} <br />
-                    Rindas garums: ${queueSize} <br />
-                    ${email}
-                </div>`);
-                    infoBubble.open();
-                    hoveringInfo = true;
-                }
-            }
-        });
+        mapLayer = layer;
     }
 
-    $('#AddButton').on('click', addLayer);
-    addLayer();
-}());
+
+    function centerToCity(city) {
+        console.log(city);
+        let url = `https://geocoder.api.here.com/6.2/geocode.json?&city=${city}&country=Latvija&gen=9&app_id=${app_id}&app_code=${app_code}`;
+
+        $.get(url, function (data) {
+            let mv = data.Response.View[0].Result[0].Location.MapView;
+            setMapViewBounds(mv);
+        });
+
+        function setMapViewBounds(mv) {
+            console.log(mv);
+            console.log(map);
+            var bbox = new H.geo.Rect(
+                mv.TopLeft.Latitude * inflateRect.TopLeft,
+                mv.TopLeft.Longitude * inflateRect.TopLeft,
+                mv.BottomRight.Latitude * inflateRect.BottomRight,
+                mv.BottomRight.Longitude * inflateRect.BottomRight);
+            map.setViewBounds(bbox);
+        }
+    }
+
+    $('#CenterButton').on('click', function () { centerToCity($("#CityText").val()); });
+
 }
