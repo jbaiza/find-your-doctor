@@ -4,3 +4,20 @@
   margin-top: 30px;
   margin-bottom: 50px;
 }
+
+#detail_info_div {
+  position: absolute;
+  top: 5em;
+  bottom: 1em;
+  left: calc(75% + 1em);
+  right: 1em;
+  width: calc(25% - 1em);
+  height: calc(100vh - 7em);
+  overflow: auto;
+}
+
+#close_box {
+  right: 0px;
+  top: 0px;
+  position: absolute;
+}

@@ -40,11 +40,28 @@ ready = ->
   })
   $('#search_service').on 'change', change_search_service
 
-@map_layer = undefined
-@global_map = undefined
+@mapLayer = undefined
+@globalMap = undefined
 
 change_search_service = (e) ->
   option = $(e.currentTarget).find(':selected')
-  service_id = option.val()
-  global_map.removeLayer(map_layer) if global_map
-  addLayer("institutions/search.csv?service_id=" + service_id)
+  serviceId = option.val()
+  globalMap.removeLayer(mapLayer) if globalMap
+  addLayer("institutions/search.csv?service_id=" + serviceId)
+
+@show_specialists = (address_service_id) ->
+  $.ajax
+    url: "specialist_assignments/partial_list"
+    type: "GET"
+    data: {institution_address_service_id: address_service_id}
+    success: (data, textStatus, jqXHR) ->
+      $("#detail_info_div").show()
+      $(".dl-map").removeClass("wide")
+      $("#detail_info_div").html(data)
+      $("#close_box").on 'click', hide_specialists
+
+@hide_specialists = ->
+  $("#detail_info_div").hide()
+  $("#map_div").attr("class", "12u$(xsmall) 9u")
+  $(".dl-map").addClass("wide")
+

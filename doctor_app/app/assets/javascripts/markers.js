@@ -49,7 +49,7 @@ var hoveringInfo = false;
         }
     );
 
-    global_map = map;
+    globalMap = map;
 
     // make the map interactive
     const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
@@ -131,8 +131,8 @@ var hoveringInfo = false;
         } else if (hoveredObject.icon) {
             let row = hoveredObject.getData();
             if (row) {
-                let mailto = row[4];
-                alert(mailto);
+                let id = row[4];
+                show_specialists(id);
             }
         }
     });
@@ -258,7 +258,6 @@ var hoveringInfo = false;
         // add layer to map
         map.addLayer(layer);
 
-        map_layer = layer;
-
+        mapLayer = layer;
     }
 }

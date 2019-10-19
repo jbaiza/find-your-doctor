@@ -13,6 +13,10 @@ class InstitutionAddressService < ApplicationRecord
     end
   end
 
+  def institution
+    institution_address&.institution
+  end
+
   def self.load_data(branch_mapping_file, file_names)
     require "CSV"
     load_branch_mapping(branch_mapping_file)

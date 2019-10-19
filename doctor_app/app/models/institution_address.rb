@@ -6,4 +6,8 @@ class InstitutionAddress < ApplicationRecord
   def sub_region_name
     sub_region&.name
   end
+
+  def full_address
+    "#{address}, #{sub_region_name}"
+  end
 end
