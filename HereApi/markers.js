@@ -98,6 +98,11 @@ var hoveringInfo = false;
 
         // Center and zoom the map so that the whole isoline polygon is in the viewport:
         map.setViewBounds(isolinePolygon.getBounds());
+
+        isolineCenter.addEventListener('tap', function (evt) {
+            evt.stopPropagation();
+            map.removeObjects([isolineCenter, isolinePolygon]);
+        });
     };
 
 
@@ -110,6 +115,7 @@ var hoveringInfo = false;
 
         // Set a new starting position (departure) when the user clicks the map
         map.addEventListener('tap', function (evt) {
+            evt.stopPropagation();
             if (!hoveringInfo) {
                 var coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
                 startPosition = coord.lat + ',' + coord.lng;
