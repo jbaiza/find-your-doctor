@@ -28,9 +28,9 @@ class SpecialistAssignmentsController < ApplicationController
         end
         @institution_address_service = @institution_address_services.first
       end
-      @institution = @institution_address_service.institution
-      @institution_address = @institution_address_service.institution_address
     end
+    @institution = @institution_address_service.institution
+    @institution_address = @institution_address_service.institution_address
     render layout: false
   end
 end
