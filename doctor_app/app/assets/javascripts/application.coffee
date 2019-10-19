@@ -37,6 +37,7 @@ ready = ->
   })
   $('#search_service').on 'change', change_search_service
   $('#search_sub_region').on 'change', change_search_region
+  $('#search_ico').on 'click', perform_search
 
 @mapLayer = undefined
 @globalMap = undefined
@@ -52,11 +53,18 @@ change_search_region = (e) ->
   region = option.text()
   centerToCity(region)
 
-@show_specialists = (address_service_id) ->
+perform_search = (e) ->
+  searchTerm = $("#search_text").val()
+  if searchTerm.length > 3
+    globalMap.removeLayer(mapLayer) if globalMap
+    addLayer("institutions/search.csv?search_term=" + searchTerm)
+
+@show_specialists = (address_service_id, address_id) ->
+  searchTerm = $("#search_text").val()
   $.ajax
     url: "specialist_assignments/partial_list"
     type: "GET"
-    data: {institution_address_service_id: address_service_id}
+    data: {institution_address_service_id: address_service_id, institution_address_id: address_id, search_term: searchTerm}
     success: (data, textStatus, jqXHR) ->
       $("#detail_info_div").show()
       $(".dl-map").removeClass("wide")

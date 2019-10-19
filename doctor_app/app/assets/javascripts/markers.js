@@ -137,7 +137,7 @@ if (typeof H !== 'undefined') {
             let row = hoveredObject.getData();
             if (row) {
                 let id = row[4];
-                show_specialists(id);
+                show_specialists(id, row[7]);
             }
         }
     });
@@ -211,8 +211,9 @@ if (typeof H !== 'undefined') {
                             facility: row[0],
                             address: row[1],
                             email: row[2],
-                            mailto: row[6],
-                            queueSize: `${row[5]} dienas`,
+                            institutionAddressServiceId: row[6],
+                            institutionAddressId: row[7],
+                            queueSize: isNaN(row[5]) ? row[5] : `${row[5]} dienas`,
                             queueHeat: isNaN(row[5]) ? '#888888' : heat(Number(row[5]))
                         }
                     };
@@ -231,9 +232,10 @@ if (typeof H !== 'undefined') {
                     feature.properties.facility,
                     feature.properties.address,
                     feature.properties.email,
-                    feature.properties.mailto,
+                    feature.properties.institutionAddressServiceId,
                     feature.properties.queueSize,
-                    feature.properties.queueHeat
+                    feature.properties.queueHeat,
+                    feature.properties.institutionAddressId
                     ]);
                 }
                 return rows;

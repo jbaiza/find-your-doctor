@@ -5,7 +5,7 @@ module ApplicationHelper
     CSV.generate_line(
       [institution_address.name, "#{institution_address.address}, #{institution_address.sub_region_name}",
         institution_address.contact_info, institution_address.lat, institution_address.lon,
-        institution_address_service.queue_size_display, institution_address_service.id
+        institution_address_service.queue_size_display, !@search_term.present? ? institution_address_service.id : nil, institution_address.id
       ]
     ).html_safe
   end

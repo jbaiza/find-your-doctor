@@ -1,7 +1,11 @@
 .row
   %strong= "#{t(:looking_for)}:"
 .row
-  = text_field(:search, :text, size: 15, style: "margin-left: 2em; width: calc(100% - 2em); height: 28px")
+  = text_field(:search, :text, size: 15, style: "margin-left: 2em; width: calc(100% - 2em - 42px); height: 28px")
+  %svg#search_ico{"enable-background" => "new 0 0 50 50", height: "24px", space: "preserve", version: "1.1", viewbox: "0 0 50 50", width: "24px", xmlns: "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink", style: "padding: 0px; margin-left: 12px"}
+    %rect{fill: "none", height: "50", width: "50"}
+    %circle{cx: "21", cy: "20", fill: "none", r: "16", stroke: "#5c2482", "stroke-linecap" => "round", "stroke-miterlimit" => "10", "stroke-width" => "2"}
+    %line{fill: "none", stroke: "#5c2482", "stroke-miterlimit" => "10", "stroke-width" => "4", x1: "32.229", x2: "45.5", y1: "32.229", y2: "45.5"}
 #location_select_div.row
   %strong= "#{t(:location)}:"
 .row
