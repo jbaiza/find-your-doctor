@@ -1,10 +1,12 @@
 en:
   find_your_doctor: Find Your Doctor
   looking_for: Looking for
-  location: Location
+  location: Center to location
   service: Service
   renovation: renovation
   temporary_not_available: Temporary not available
   not_available: Not available
 
   queue_size: Avg queue size
+
+  map: Map

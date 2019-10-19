@@ -13,13 +13,10 @@
 #= require jquery
 #= require rails-ujs
 #= require activestorage
-#= require turbolinks
 #= require select2-full
 #= require_tree .
 
 ready = undefined
-
-$(document).on 'turbolinks:load', ready
 
 $(document).ready ->
   ready()
@@ -28,17 +25,18 @@ ready = ->
   $("#search_service").select2({
     allowClear: true,
     dropdownAutoWidth: true,
-    placeholder: "Lūdzu izvēlieties",
+    placeholder: "Please choose",
     dropdownParent: $('#service_select_div')
   })
 
   $("#search_sub_region").select2({
     allowClear: true,
     dropdownAutoWidth: true,
-    placeholder: "Lūdzu izvēlieties",
+    placeholder: "Please choose",
     dropdownParent: $('#location_select_div')
   })
   $('#search_service').on 'change', change_search_service
+  $('#search_sub_region').on 'change', change_search_region
 
 @mapLayer = undefined
 @globalMap = undefined
@@ -48,6 +46,11 @@ change_search_service = (e) ->
   serviceId = option.val()
   globalMap.removeLayer(mapLayer) if globalMap
   addLayer("institutions/search.csv?service_id=" + serviceId)
+
+change_search_region = (e) ->
+  option = $(e.currentTarget).find(':selected')
+  region = option.text()
+  centerToCity(region)
 
 @show_specialists = (address_service_id) ->
   $.ajax

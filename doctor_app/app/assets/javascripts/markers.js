@@ -1,16 +1,21 @@
 //https://developer.here.com/api-explorer/geovisualization/technology_markers/markers-csv-provider
 /** Config **/
 if (typeof H !== 'undefined') {
-var startPosition = new H.geo.Point(56.9002, 24.6057);
-var departureTime = '2019-10-28T08:00:00';
+    var startPosition = new H.geo.Point(56.9002, 24.6057);
+    var departureTime = '2019-10-28T08:00:00';
 
-var SECONDS = 1;
-var MINUTES = 60 * SECONDS;
-var timeRange = 30 * MINUTES;
+    var SECONDS = 1;
+    var MINUTES = 60 * SECONDS;
+    var timeRange = 30 * MINUTES;
 
-// var dataEndpoint = 'institutions/search.csv?service_id=19'; //'https://demistifier.ngrok.io/institutions.csv';
-///////////////////////////////////////////////////////////////////////////
-var hoveringInfo = false;
+    // var dataEndpoint = 'institutions/search.csv?service_id=19'; //'https://demistifier.ngrok.io/institutions.csv';
+    ///////////////////////////////////////////////////////////////////////////
+    var hoveringInfo = false;
+
+    var inflateRect = {
+        TopLeft: 0.995,
+        BottomRight: 1.005
+    };
 
     'use strict';
 
@@ -259,5 +264,26 @@ var hoveringInfo = false;
         map.addLayer(layer);
 
         mapLayer = layer;
+    }
+
+    function centerToCity(city) {
+        console.log(city);
+        let url = `https://geocoder.api.here.com/6.2/geocode.json?&city=${city}&country=Latvija&gen=9&app_id=${app_id}&app_code=${app_code}`;
+
+        $.get(url, function (data) {
+            let mv = data.Response.View[0].Result[0].Location.MapView;
+            setMapViewBounds(mv);
+        });
+
+        function setMapViewBounds(mv) {
+            console.log(mv);
+            console.log(map);
+            var bbox = new H.geo.Rect(
+                mv.TopLeft.Latitude * inflateRect.TopLeft,
+                mv.TopLeft.Longitude * inflateRect.TopLeft,
+                mv.BottomRight.Latitude * inflateRect.BottomRight,
+                mv.BottomRight.Longitude * inflateRect.BottomRight);
+            map.setViewBounds(bbox);
+        }
     }
 }

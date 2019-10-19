@@ -13,7 +13,10 @@
   right: 1em;
   width: 25%;
   height: calc(100vh - 7em);
-  overflow: auto;
+  overflow: auto
+}
+
+#specialists_div {
 }
 
 #close_box {
@@ -34,4 +37,22 @@
 
 select2_change_border_color {
   border-color: $border_color
+}
+
+#institution_info {
+  border: solid 1px $main;
+  padding-left: 1em;
+  padding-right: 1em
+}
+
+.specialist_info {
+  border-top: solid 1px $border_color
+}
+
+.bold {
+  font-weight: 500
+}
+
+.smaller {
+  font-size: 90%
 }
