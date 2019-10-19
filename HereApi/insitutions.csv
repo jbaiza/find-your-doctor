@@ -1,0 +1,132 @@
+name,address,contact_info,lat,lon,queue_size,id
+
+Kuldīgas slimnīca,"Aizputes iela 22, Kuldīga",63374000,56.9627,21.9538,5,6
+
+Jaunliepājas primārās veselības aprūpes centrs,"Aldaru iela 20/24, Liepāja",63423149,56.5164,21.01,5,22
+
+Liepājas reģionālā slimnīca,"K. Zāles laukums 2, Liepāja",63427542,56.5116,21.0152,5,23
+
+Priekules slimnīca,"Aizputes iela 5, Priekule",63459125,56.442,21.5836,5,24
+
+Tukuma slimnīca,"Raudas iela 8, Tukums",63122209,56.9691,23.1563,5,28
+
+Irlavas Sarkanā krusta slimnīca,"""Irlavas slimnīca un ambulance"", Irlavas pagasts, Tukuma novads, Irlava",63154837,56.8756,22.9939,5,29
+
+Saldus medicīnas centrs,"Slimnīcas iela 3, Saldus",63881562,56.6716,22.4914,5,31
+
+Dundagas veselības centrs,"Pils iela 6, Dundaga",63232303,57.5094,22.3523,5,42
+
+Daugavpils bērnu veselības centrs,"18.novembra 19, Daugavpils","65422450, 65422153",55.8665,26.5235,5,45
+
+Rēzeknes slimnīca,"18.Novembra iela 41, Rēzekne",68805050,56.5079,27.3428,5,48
+
+Viļānu slimnīca,"Rīgas iela 57, Viļāni",64662860,56.5658,26.9282,5,49
+
+Kārsavas slimnīca,"Vienības iela 52, Kārsava",65707064,56.7847,27.6792,5,51
+
+Preiļu slimnīca,"Raiņa bulvāris 13, Preiļi",65307750,56.2916,26.727,5,52
+
+Krāslavas slimnīca,"Rīgas iela 159, Krāslava",65681631,55.8868,27.1753,28,54
+
+Jūrmalas slimnīca,"Vienības prospekts 19/21, Jūrmala",67752254,56.9806,23.8589,5,95
+
+Rīgas 1. slimnīca,"Bruņinieku ielā 5, Rīga",67366323,56.9603,24.1246,68,99
+
+Rīgas Dzemdību nams,"Miera iela 45, Rīga","grūtnieču aprūpe 67011334, konsultācijas, izmeklējumi 67011225, prenatālā diagnostika 67011235",56.967,24.1335,5,100
+
+Siguldas slimnīca,"Lakstīgalas iela 13,, Sigulda",67971329,57.1567,24.8443,5,101
+
+OlainMed,"Veselības 5, Olaine",67962764,56.7856,23.9343,5,107
+
+RĪGAS 2. SLIMNĪCA,"Ģimnastikas iela 1, Rīga","67607243, 67607240",56.9166,24.0907,5,108
+
+Salaspils veselības centrs,"Lauku iela 8, Salaspils","67800750, 67800751",56.8548,24.3391,5,116
+
+Alūksnes slimnīca,"Pils iela 1a, Alūksne",64307145,57.4371,27.0387,5,120
+
+Varakļānu veselības aprūpes centrs,"Pils iela 25a, Varakļāni",64860733,56.6096,26.7695,5,125
+
+Mazsalacas slimnīca,"Parka iela 14, Mazsalaca",64251070,57.8618,25.0496,9,127
+
+Zemgales veselības centrs,"Zemgales prospekts 15, Jelgava",63084004,56.6429,23.7318,5,156
+
+Jelgavas pilsētas slimnīca,"Brīvības bulvāris 6, Jelgava",63030370,56.6575,23.7501,5,159
+
+Jelgavas poliklīnika,"Sudrabu Edžus iela 10, Jelgava",63022101,56.6471,23.7245,5,161
+
+Jēkabpils reģionālā slimnīca,"Stadiona iela 1, Jēkabpils",62203333,56.4985,25.8398,5,170
+
+Aizkraukles slimnīca,"Bērzu iela 5, Aizkraukle",65133875;  65133874,56.6031,25.2542,5,172
+
+Bauskas slimnīca,"Dārza iela 7/1, Bauska",63923433,56.4089,24.1917,5,174
+
+Dobeles un apkārtnes slimnīca,"Ādama iela 2, Dobele",63722375; 63723442; 63722407,56.622,23.2694,5,179
+
+Aknīstes veselības un sociālās aprūpes centrs,"Skolas iela 9, Aknīste",65237792,56.1623,25.74,5,183
+
+Viesītes veselības un sociālās aprūpes centrs,"Kārļa iela 5/7, Viesīte",65237118,56.3497,25.5538,5,184
+
+Ogres rajona slimnīca,"Slimnīcas iela 2, Ogre",20381369,56.8196,24.6197,5,185
+
+Skrundas veselības un sociālās aprūpes centrs,"Kuldīgas iela 2, Skrunda",63331471  63331473,56.6764,22.0164,5,364
+
+Ziemeļkurzemes reģionālā slimnīca - Ventspils filiāle,"Inženieru iela 60, Ventspils",63624665,57.3866,21.5448,5,388
+
+Ziemeļkurzemes reģionālā slimnīca - Talsu filiāle,"Stendes iela 1, Talsi",63223350,57.2382,22.5922,5,389
+
+"Daugavpils reģionālā slimnīca, Viestura filiāle","Viestura 5, Daugavpils",65422419,55.8682,26.5269,17,392
+
+"Ludzas medicīnas centrs, Raiņa filiāle","Raiņa 43, Ludza",65707093,56.5429,27.7141,5,401
+
+"Veselības centrs ""Ilūkste""","Raiņa 35, Ilūkste",65462455,55.9816,26.2901,5,404
+
+"Veselības un sociālo pakalpojumu centrs ""Dagda""","Brīvības iela 29, Dagda",65653187,56.0953,27.5251,5,405
+
+"Veselības centru apvienība, Medicīnas centrs OLVI","Arhitektu iela 12, Daugavpils",65441226,55.8933,26.5634,11,438
+
+"Veselības centru apvienība, AIWA Clinic","Maskavas iela 241, Rīga",67799100,56.9262,24.1682,91,440
+
+"Veselības centru apvienība, DINAS medicīnas centrs","Varšavas iela 43 a, Daugavpils",65435234,55.8767,26.5336,11,441
+
+"Veselības centru apvienība, Liepājas medicīnas centrs","Brīvības iela 95, Liepāja",63428796,56.5239,21.0254,5,443
+
+"Veselības centru apvienība, Veselības centrs Pļavnieki","A.Saharova 16, Rīga",67146899,0.0,0.0,5,446
+
+Latvijas Jūras medicīnas centrs Sarkandaugavas ambulatorās veselības aprūpes centrs,"Patversmes iela 23, Rīga",67889000,56.99,24.1365,5,466
+
+Latvijas Jūras medicīnas centrs Vecmīlgrāvja slimnīca,"Vecmīlgrāvja 5.līnija 26, Rīga",67341502,57.0328,24.1118,15,468
+
+Saulkrastu slimnīca,"Ainažu iela 34, Saulkrasti",67952700,57.2736,24.4168,5,482
+
+"Veselības centru apvienība, Dubultu poliklīnika","Slokas 26, Jūrmala",67760077,56.9665,23.7701,5,488
+
+"Rīgas Austrumu klīniskā univeristātes slimnīca, stacionārs ""GAIĻEZERS""","Hipokrāta iela 2, Rīga",67000610,56.9678,24.2435,5,523
+
+"Bērnu Klīniskā universitātes slimnīca, Vienības gatves filiāle","Vienības gatve 45, Rīga",80708866,56.922,24.0881,5,561
+
+"Nacionālais rehabilitācijas centrs ""Vaivari"", Jūrmalas filiāle","Asaru prospekts 61, Jūrmala",67147291,56.9591,23.6677,5,563
+
+Paula Stradiņa klīniskā universitātes slimnīca,"Pilsoņu iela 13, Rīga",67069280,56.9325,24.0641,5,565
+
+"Cēsu klīnika, Slimnīcas filiāle","Slimnīcas iela 9, Cēsis",64125634,57.3155,25.2559,5,575
+
+"Balvu un Gulbenes slimnīcu apvienība, Gulbenes filiāle","Upes iela 1, Gulbene",64472809,57.1571,26.762,5,577
+
+"Limbažu slimnīca, Klostera 3 filiāle","Klostera iela 3, Limbaži",29637574,57.5153,24.7169,14,581
+
+Madonas slimnīca,"Rūpniecības iela 38, Madona",64860586,56.8513,26.2367,5,584
+
+Ērgļu slimnīca,"Parka iela 7, Ērgļi",64871471,56.8935,25.6412,5,585
+
+LUBĀNAS VESELĪBAS UN SOCIĀLAS APRŪPES CENTRS,"Oskara Kalpaka iela 12, Lubāna",64894115,56.8989,26.7186,5,586
+
+"Vidzemes slimnīca, Valmieras filiāle","Jumaras iela 195, Valmiera",64202603; 64202601,57.5181,25.385,5,588
+
+"Vidzemes slimnīca, Valkas filiāle","Rūjienas iela 3, Valka",64722307,57.7859,26.0119,5,589
+
+"Medicīnas centrs ""Fitosan Plus""","Pērnavas iela 4F, Jelgava",63011748,56.6686,23.7582,5,619
+
+Iecavas veselības centrs,"Dzirnavu iela 1, Iecava",63941481,56.596,24.2062,5,623
+
+Aizputes veselības un sociālās aprūpes centrs,"Atmodas iela 17, Aizpute",63448212,56.7195,21.6053,5,378
+
