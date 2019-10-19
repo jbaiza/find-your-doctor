@@ -192,7 +192,7 @@ if (typeof H !== 'undefined') {
                 }
 
                 function heat(q) {
-                    var clamp = 500;
+                    var clamp = 1500;
                     var r = 255;//Math.floor(map_range(Math.min(q, clamp), 1, clamp, 1, 255));
                     var g = Math.floor(map_range(Math.min(q, clamp), 1, clamp, 220, 1));
                     var b = 55;

@@ -39,3 +39,22 @@
   width:12em;
   padding: 0;
 }
+
+#grad {
+  position: absolute;
+  top: 7em;
+  left: calc(25% + 2em);
+  height: 2em;
+  width: 150px;
+  background-image: linear-gradient(to right, rgb(255, 220, 55), rgb(255, 1, 55));
+}
+
+#grad_right {
+  float: right;
+  padding-right: 5px;
+  color: white;
+}
+
+#grad_left {
+  padding-left: 5px;
+}
