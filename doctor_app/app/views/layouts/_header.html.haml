@@ -1,6 +1,8 @@
 %header#header
   .inner
-    %a.logo{href: "/"}= t(:find_your_doctor)
+    %a.logo{href: "/"}
+      =image_tag "logo.png", width: "30px"
+      = t(:find_your_doctor)
     %nav#nav
       = render partial: 'layouts/menu'
 %a.navPanelToggle{href: "#menu"}
