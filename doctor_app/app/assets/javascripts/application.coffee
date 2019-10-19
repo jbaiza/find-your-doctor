@@ -25,14 +25,14 @@ ready = ->
   $("#search_service").select2({
     allowClear: true,
     dropdownAutoWidth: true,
-    placeholder: "Lūdzu izvēlieties",
+    placeholder: "Please choose",
     dropdownParent: $('#service_select_div')
   })
 
   $("#search_sub_region").select2({
     allowClear: true,
     dropdownAutoWidth: true,
-    placeholder: "Lūdzu izvēlieties",
+    placeholder: "Please choose",
     dropdownParent: $('#location_select_div')
   })
   $('#search_service').on 'change', change_search_service

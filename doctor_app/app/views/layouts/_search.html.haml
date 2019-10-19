@@ -5,8 +5,8 @@
 #location_select_div.row
   %strong= "#{t(:location)}:"
 .row
-  = select(:search, :sub_region, SubRegion.all.collect { |s| [s.name, s.id]}, include_blank: true)
+  = select(:search, :sub_region, SubRegion.all.order(:name).collect { |s| [s.name, s.id]}, include_blank: true)
 #service_select_div.row
   %strong= "#{t(:service)}:"
 .row
-  = select(:search, :service, Service.all.collect { |s| [s.name, s.id]}, include_blank: true)
+  = select(:search, :service, Service.all.order(:name).collect { |s| [s.name, s.id]}, include_blank: true)

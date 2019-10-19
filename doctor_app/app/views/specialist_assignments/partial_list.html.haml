@@ -26,7 +26,7 @@
       &nbsp;
     .11u.smaller
       = "#{t(:queue_size)}:"
-      = @institution_address_service.queue_size_display
+      %span.bold= @institution_address_service.queue_size_display
 #specialists_div
   - @specialist_assignments.group_by{ |sa| sa.specialist_name }.each do |specialist_name, specialist_assignments|
     .specialist_info
