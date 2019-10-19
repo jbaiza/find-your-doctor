@@ -38,6 +38,7 @@ ready = ->
   $('#search_service').on 'change', change_search_service
   $('#search_sub_region').on 'change', change_search_region
   $('#search_ico').on 'click', perform_search
+  $('#search_text').on 'keydown', start_search
 
 @mapLayer = undefined
 @globalMap = undefined
@@ -52,6 +53,10 @@ change_search_region = (e) ->
   option = $(e.currentTarget).find(':selected')
   region = option.text()
   centerToCity(region)
+
+start_search = (e) ->
+  if e.keyCode == 13
+    perform_search()
 
 perform_search = (e) ->
   searchTerm = $("#search_text").val()
