@@ -46,6 +46,7 @@ ready = ->
 change_search_service = (e) ->
   option = $(e.currentTarget).find(':selected')
   serviceId = option.val()
+  hide_specialists()
   globalMap.removeLayer(mapLayer) if globalMap
   addLayer("institutions/search.csv?service_id=" + serviceId)
 
@@ -61,6 +62,7 @@ start_search = (e) ->
 perform_search = (e) ->
   searchTerm = $("#search_text").val()
   if searchTerm.length > 3
+    hide_specialists()
     globalMap.removeLayer(mapLayer) if globalMap
     addLayer("institutions/search.csv?search_term=" + searchTerm)
 
