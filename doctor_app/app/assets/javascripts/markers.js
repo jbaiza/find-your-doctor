@@ -45,7 +45,7 @@ var hoveringInfo = false;
         {
             pixelRatio,
             center: startPosition,
-            zoom: 7.6
+            zoom: 7
         }
     );
 
