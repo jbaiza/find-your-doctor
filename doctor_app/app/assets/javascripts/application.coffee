@@ -13,13 +13,10 @@
 #= require jquery
 #= require rails-ujs
 #= require activestorage
-#= require turbolinks
 #= require select2-full
 #= require_tree .
 
 ready = undefined
-
-$(document).on 'turbolinks:load', ready
 
 $(document).ready ->
   ready()
