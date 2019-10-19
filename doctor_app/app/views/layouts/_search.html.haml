@@ -1,0 +1,9 @@
+.row
+  %strong= "#{t(:looking_for)}:"
+  = text_field(:search, :text, size: 20)
+#location_select_div.row
+  %strong= "#{t(:location)}:"
+  = select(:search, :sub_region, SubRegion.all.collect { |s| [s.name, s.id]}, include_blank: true)
+#service_select_div.row
+  %strong= "#{t(:service)}:"
+  = select(:search, :service, Service.all.collect { |s| [s.name, s.id]}, include_blank: true)

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  service_category: one
+  name: MyString
+
+two:
+  service_category: two
+  name: MyString
