@@ -46,5 +46,5 @@ ready = ->
 change_search_service = (e) ->
   option = $(e.currentTarget).find(':selected')
   service_id = option.val()
-  global_map.removeLayer(map_layer);
+  global_map.removeLayer(map_layer) if global_map
   addLayer("institutions/search.csv?service_id=" + service_id)
