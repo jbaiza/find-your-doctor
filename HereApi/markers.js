@@ -58,20 +58,6 @@ var hoveringInfo = false;
     // Get an instance of the routing service
     var router = platform.getRoutingService();
 
-    // Set a new starting position (departure) when the user clicks the map
-    map.addEventListener('tap', function (evt) {
-        if (!hoveringInfo) {
-            var coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
-            startPosition = coord.lat + ',' + coord.lng;
-            startIsolineRouting();
-        } else if (hoveredObject.icon) {
-            let row = hoveredObject.getData();
-            if (row) {
-                let mailto = row[4];
-                alert(mailto);
-            }
-        }
-    });
     function startIsolineRouting() {
         // Set up the Routing API parameters
         var routingParams = {
@@ -121,6 +107,21 @@ var hoveringInfo = false;
     });
 
     function addLayer() {
+
+        // Set a new starting position (departure) when the user clicks the map
+        map.addEventListener('tap', function (evt) {
+            if (!hoveringInfo) {
+                var coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
+                startPosition = coord.lat + ',' + coord.lng;
+                startIsolineRouting();
+            } else if (hoveredObject.icon) {
+                let row = hoveredObject.getData();
+                if (row) {
+                    let mailto = row[4];
+                    alert(mailto);
+                }
+            }
+        });
 
         // data from the Open Berlin Data
         // https://www.berlin.de/sen/kultur/kulturpolitik/statistik-open-data/orte-geodaten/
