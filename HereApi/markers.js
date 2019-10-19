@@ -14,6 +14,8 @@ if (typeof H !== 'undefined') {
     };
 
     var hoveringInfo = false;
+    globalThis.isolineParams = [];
+    globalThis.globalFeatures = [];
 
     'use strict';
 
@@ -98,6 +100,8 @@ if (typeof H !== 'undefined') {
 
         // Add the polygon and marker to the map
         map.addObjects([isolineCenter, isolinePolygon]);
+        globalThis.isolineParams.push({ isolineCenter: isolineCenter, isolinePolygon: isolinePolygon });
+        console.log(globalThis);
 
         // Center and zoom the map so that the whole isoline polygon is in the viewport:
         map.setViewBounds(isolinePolygon.getBounds());
@@ -105,6 +109,13 @@ if (typeof H !== 'undefined') {
         isolineCenter.addEventListener('tap', function (evt) {
             evt.stopPropagation();
             map.removeObjects([isolineCenter, isolinePolygon]);
+
+            let k = globalThis.isolineParams.indexOf({ isolineCenter: isolineCenter, isolinePolygon: isolinePolygon });
+            if (k !== -1)
+                delete globalThis.isolineParams[k];
+
+            console.log(globalThis);
+            
         });
     };
 
@@ -289,6 +300,16 @@ if (typeof H !== 'undefined') {
         }
     }
 
+    function redrwaIsolines() {
+        for (let k = globalThis.isolineParams.length - 1; k >= 0; k--) {
+            map.removeObjects([globalThis.isolineParams[k].isolineCenter, globalThis.isolineParams[k].isolinePolygon]);
+            startPosition = globalThis.isolineParams[k].isolineCenter.b.lat + ',' + globalThis.isolineParams[k].isolineCenter.b.lng;
+            startIsolineRouting();
+        }
+    }
+
+
     $('#CenterButton').on('click', function () { centerToCity($("#CityText").val()); });
     addLayer('insitutions.csv');
+    $('#myRange').on('change', redrwaIsolines);
 }
