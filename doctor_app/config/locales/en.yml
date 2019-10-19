@@ -8,3 +8,5 @@ en:
   not_available: Not available
 
   queue_size: Avg queue size
+
+  map: Map
