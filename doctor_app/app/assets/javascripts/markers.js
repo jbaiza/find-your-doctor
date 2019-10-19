@@ -6,11 +6,13 @@ if (typeof H !== 'undefined') {
 
     var SECONDS = 1;
     var MINUTES = 60 * SECONDS;
-    var timeRange = 30 * MINUTES;
+    var timeRange = 60 * MINUTES;
 
     // var dataEndpoint = 'institutions/search.csv?service_id=19'; //'https://demistifier.ngrok.io/institutions.csv';
     ///////////////////////////////////////////////////////////////////////////
     var hoveringInfo = false;
+    globalThis.isolineParams = [];
+    globalThis.globalFeatures = [];
 
     var inflateRect = {
         TopLeft: 0.995,
@@ -71,7 +73,7 @@ if (typeof H !== 'undefined') {
             'start': startPosition,
             'departure': departureTime, // can also use 'arrival' or both
             'rangetype': 'time', // distance (meters), time (seconds)
-            'range': timeRange
+            'range': $('#myRange').val() * MINUTES
         };
 
         // Call the Routing API to calculate an isoline
@@ -101,6 +103,8 @@ if (typeof H !== 'undefined') {
 
         // Add the polygon and marker to the map
         map.addObjects([isolineCenter, isolinePolygon]);
+        globalThis.isolineParams.push({ isolineCenter: isolineCenter, isolinePolygon: isolinePolygon });
+        console.log(globalThis);
 
         // Center and zoom the map so that the whole isoline polygon is in the viewport:
         map.setViewBounds(isolinePolygon.getBounds());
@@ -108,6 +112,9 @@ if (typeof H !== 'undefined') {
         isolineCenter.addEventListener('tap', function (evt) {
             evt.stopPropagation();
             map.removeObjects([isolineCenter, isolinePolygon]);
+            let k = globalThis.isolineParams.indexOf({ isolineCenter: isolineCenter, isolinePolygon: isolinePolygon });
+            if (k !== -1)
+                delete globalThis.isolineParams[k];
         });
     };
 
@@ -219,6 +226,7 @@ if (typeof H !== 'undefined') {
                     };
                     features.push(feature);
                 }
+                globalThis.globalFeatures = features;
                 return features;
             },
             featuresToRows: (features) => {
@@ -288,4 +296,14 @@ if (typeof H !== 'undefined') {
             map.setViewBounds(bbox);
         }
     }
+
+    function redrwaIsolines() {
+        for (let k = globalThis.isolineParams.length - 1; k >= 0; k--) {
+            map.removeObjects([globalThis.isolineParams[k].isolineCenter, globalThis.isolineParams[k].isolinePolygon]);
+            startPosition = globalThis.isolineParams[k].isolineCenter.b.lat + ',' + globalThis.isolineParams[k].isolineCenter.b.lng;
+            startIsolineRouting();
+        }
+    }
+
+    $('#myRange').on('change', redrwaIsolines);
 }

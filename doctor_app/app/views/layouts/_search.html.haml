@@ -14,3 +14,7 @@
   %strong= "#{t(:service)}:"
 .row
   = select(:search, :service, Service.all.order(:name).collect { |s| [s.name, s.id]}, include_blank: true)
+.row
+  %strong= "#{t(:travel_time)}:"
+%div
+  %input{type: "range", min: "10", max: "240", value: "60", class: "slider", id: "myRange", style: "width: 100%"}
