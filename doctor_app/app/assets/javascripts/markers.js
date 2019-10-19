@@ -213,7 +213,7 @@ if (typeof H !== 'undefined') {
                             email: row[2],
                             institutionAddressServiceId: row[6],
                             institutionAddressId: row[7],
-                            queueSize: isNaN(row[5]) ? row[5] : `${row[5]} dienas`,
+                            queueSize: row[8],
                             queueHeat: isNaN(row[5]) ? '#888888' : heat(Number(row[5]))
                         }
                     };

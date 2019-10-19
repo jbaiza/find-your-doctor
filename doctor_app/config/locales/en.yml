@@ -13,3 +13,13 @@ en:
   home: Home
   specialists: Specialists
   contacts: Contacts
+
+  year:
+    one: year
+    other: years
+  month:
+    one: month
+    other: months
+  day:
+    one: day
+    other: days

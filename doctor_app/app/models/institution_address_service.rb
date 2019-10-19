@@ -2,8 +2,31 @@ class InstitutionAddressService < ApplicationRecord
   belongs_to :institution_address
   belongs_to :service
 
+  def convert_to_days_months_years(days)
+    years = (days / 365).round(1)
+    months = ((days - years * 365) / 30).round(1)
+    days = (days - years * 365 - months * 30)
+    text = []
+    if years > 0
+      text << "#{years} #{I18n.t(:year, count: years)}"
+    end
+    if months > 0
+      text << "#{months} #{I18n.t(:month, count: months)}"
+    end
+    if (years == 0 && months == 0) || days > 0
+      text << "#{days} #{I18n.t(:day, count: days)}"
+    end
+    text.join(" ")
+  end
+
+  def queue_size_or_text
+    queue_size || special_mark
+  end
+
   def queue_size_display
-    queue_size || case special_mark
+    if queue_size
+      convert_to_days_months_years(queue_size)
+    end || case special_mark
     when 'R'
       I18n.t(:renovation)
     when 'P'

@@ -1,4 +1,4 @@
-- headers = ['name', 'address', 'contact_info', 'lat', 'lon', 'queue_size', 'id', 'address_id']
+- headers = ['name', 'address', 'contact_info', 'lat', 'lon', 'queue_size', 'id', 'address_id', 'queue_size_display']
 = CSV.generate_line headers
 - @institution_address_services.each do |institution_address_services|
   = get_institution_address_service_csv_line(institution_address_services)
