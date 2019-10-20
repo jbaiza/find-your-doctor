@@ -1,4 +1,8 @@
 - headers = ['name', 'address', 'contact_info', 'lat', 'lon', 'queue_size', 'id', 'address_id', 'queue_size_display']
 = CSV.generate_line headers
-- @institution_address_services.each do |institution_address_services|
-  = get_institution_address_service_csv_line(institution_address_services)
+- if @institution_address_services.present?
+  - @institution_address_services.each do |institution_address_services|
+    = get_institution_address_service_csv_line(institution_address_services)
+- elsif @institution_address.present?
+  - @institution_address.each do |institution_address|
+    = get_institution_address_csv_line(institution_address)

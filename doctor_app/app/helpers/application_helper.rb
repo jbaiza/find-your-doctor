@@ -10,4 +10,13 @@ module ApplicationHelper
     ).html_safe
   end
 
+  def get_institution_address_csv_line(institution_address)
+    CSV.generate_line(
+      [institution_address.name, "#{institution_address.address}, #{institution_address.sub_region_name}",
+        institution_address.contact_info, institution_address.lat, institution_address.lon, nil, nil,
+        params[:search_term] ? institution_address.id : nil, nil
+      ]
+    ).html_safe
+  end
+
 end

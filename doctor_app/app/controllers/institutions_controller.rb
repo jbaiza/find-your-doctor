@@ -30,7 +30,7 @@ class InstitutionsController < ApplicationController
         @institution_address_services = @institution_address_services.where("1=0")
       end
     else
-      @institution_address_services = InstitutionAddressService.includes(institution_address: [:sub_region]).all
+      @institution_address = InstitutionAddress.includes(:sub_region).all
     end
     respond_to do |format|
       format.html
