@@ -6,6 +6,7 @@ en:
   renovation: renovation
   temporary_not_available: Temporary not available
   not_available: Not available
+  travel_time: Travel time
 
   queue_size: Avg queue size
 
@@ -13,7 +14,6 @@ en:
   home: Home
   specialists: Specialists
   contacts: Contacts
-  travel_time: Travel time
 
   year:
     one: year

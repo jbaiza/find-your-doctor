@@ -1,0 +1,26 @@
+lv:
+  find_your_doctor: Atrodi speciālistu
+  looking_for: Meklēt
+  location: Centrēt vietu
+  service: Pakalpojums
+  renovation: Kabinets remontā
+  temporary_not_available: Īslaicīgi nav pieejams
+  not_available: Nav pieejams
+  travel_time: Ceļa ilgums
+
+  queue_size: Vidējā rinda
+
+  map: Karte
+  home: Sākums
+  specialists: Speciālisti
+  contacts: Kontakti
+
+  year:
+    one: gads
+    other: gadi
+  month:
+    one: mēnesis
+    other: mēneši
+  day:
+    one: diena
+    other: dienas
