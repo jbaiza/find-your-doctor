@@ -22,7 +22,7 @@ class SpecialistAssignmentsController < ApplicationController
           institution_address_service_ids.concat @specialist_assignments.map { |sa| sa.institution_address_service_id }
           @institution_address_services = @institution_address_services.where(id: institution_address_service_ids)
         end
-        if services.present?
+        if services.present? && !(specialists.present? or specialities.present?)
           @institution_address_services = @institution_address_services.where(service: services)
           @specialist_assignments = @specialist_assignments.where(institution_address_service: @institution_address_services)
         end
