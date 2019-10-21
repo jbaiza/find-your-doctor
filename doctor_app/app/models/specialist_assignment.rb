@@ -21,6 +21,8 @@ class SpecialistAssignment < ApplicationRecord
 
   def self.load_data(*file_names)
     require "CSV"
+    @specialities = {}
+    @institutions = {}
     file_names.each do |file_name|
       load_file_data(file_name)
     end
@@ -33,9 +35,10 @@ class SpecialistAssignment < ApplicationRecord
       unless specialist = Specialist.find_by(identifier: specialist_identifier)
         specialist = Specialist.create(identifier: specialist_identifier, name: name)
       end
-      speciality = Speciality.find_by(code: row[7].upcase)
+      code = row[7].upcase
+      speciality = @specialities[code] ||= Speciality.find_by(code: code)
       institution_code = row[4]
-      institution = Institution.find_by(code: institution_code)
+      institution = @institutions[institution_code] ||= Institution.find_by(code: institution_code)
       institution.institution_addresses.each do |institution_address|
         ServiceSpecialitiesMapping.where(speciality: speciality).map { |m| m.service }.each do |service|
           institution_address.institution_address_services.where(service: service).each do |ias|

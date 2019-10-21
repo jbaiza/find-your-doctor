@@ -7,9 +7,13 @@ class Speciality < ApplicationRecord
   end
 
   def self.load_file_data(file_name)
+    specialities = {}
     CSV.foreach(file_name, col_sep: ",", headers: :first_row) do |row|
       code = row[7].strip.upcase
       name = row[8]
+      specialities[code] = name
+    end
+    specialities.each do |code, name|
       unless Speciality.find_by(code: code)
         Speciality.create(code: code, name: name)
       end

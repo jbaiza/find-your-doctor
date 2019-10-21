@@ -49,8 +49,8 @@ class InstitutionAddressService < ApplicationRecord
     load_branch_mapping(branch_mapping_file)
     rows = []
     file_names.each do |category, file_name|
-      next unless category = ServiceCategory.find_by(name: category)
-      load_data_from_file(category, file_name)
+      raise category unless service_category = ServiceCategory.find_by(name: category)
+      load_data_from_file(service_category, file_name)
     end
   end
 
@@ -95,8 +95,8 @@ class InstitutionAddressService < ApplicationRecord
   def self.load_services(service_category, institution_address, service_names, row)
     row[7..-1].each_with_index do |value, index|
       if service = service_category.services.find_by(name: service_names[index])
-        if value.to_i.to_s == value
-          queue_size = value
+        if value =~ /\d+(\.\d*)?/
+          queue_size = value.to_i
           special_mark = nil
         elsif value.present?
           queue_size = nil

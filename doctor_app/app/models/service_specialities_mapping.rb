@@ -4,12 +4,15 @@ class ServiceSpecialitiesMapping < ApplicationRecord
 
   def self.load_data(file_name)
     require "CSV"
+
     CSV.foreach(file_name, col_sep: ",") do |row|
-      next unless service = Service.find_by(name: row[1])
+      raise row[1] if row[0].present? && !(service = Service.find_by(name: row[1]))
       next unless row[0].present?
       row[0].split(",").each do |s|
         next unless speciality = Speciality.find_by(code: s.upcase)
-        ServiceSpecialitiesMapping.create(speciality: speciality, service: service)
+        unless ServiceSpecialitiesMapping.find_by(speciality: speciality, service: service)
+          ServiceSpecialitiesMapping.create(speciality: speciality, service: service)
+        end
       end
     end
   end
